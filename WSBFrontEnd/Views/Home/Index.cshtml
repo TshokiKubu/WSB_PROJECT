@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #4CAF50;
+    }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    .button2 {
+        background-color: white;
+        color: black;
+        border: 2px solid #008CBA;
+    }
+
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+    
+</style>
+
+
+
+
+<div class="text-center">
+    <h1 class="display-6">Exchange Rate</h1>
+    <div>
+
+    </div>
+    <p>Currency converter - Base ZAR to other currencies.</p>
+
+    <div class="form-group row">
+        
+    </div>
+
+    <table>
+        <tr>
+            <td style="margin-left:initial"><b>Amount</b></td>
+            <td style="margin-left:initial"><b>From</b></td>
+            <td style="margin-left:initial"><b>To</b></td>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="1.00" style="width:250px; height:30px"  />&nbsp;&nbsp;</td>
+            <td> <input type="text" placeholder="ZAR - South African Rand" style="width:250px; height:30px" readonly />&nbsp;->&nbsp;</td>
+            <td> <select id="currencyDropDownList" name="currencyDropDownList" placeholder="USD" style="width:250px; height:30px" >
+                     <option value="USD">USD</option>
+                     <option value="EUR">EUR</option>
+                     <option value="GBP">GBP</option>
+                     <option value="HKD">HKD</option>
+                     <option value="KES">KES</option>
+                 </select> 
+            </td>
+        </tr>
+    </table>
+     <br />
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="margin-left: initial; background-color: #008CBA;">
+                   <button type="submit" value="Convert" class="button button2">Convert</button></td>
+            <td></td>
+            <td></td>
+            ;
+        </tr>
+    </table>
+    <br />
+    <table>
+        <tr>
+            <td style="margin-left:initial">
+                <label id="zarId"> South African Rand = </label>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>   
+        <tr>
+           <td>
+              <label id="OtherCurrencyValue"></label> <label id="currencyId"></label>
+           </td>
+        </tr>
+    </table>
+       
+        <div>
+            <h6>We use the mid-market rate for our Converter.</h6>
+        </div>
+    
+
+</div>
