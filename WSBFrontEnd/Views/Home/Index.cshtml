@@ -1,6 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+@model WSBFrontEnd.Models.Values
+@{ ViewData["Title"] = "Home Page"; }
 
 
 <style>
@@ -39,7 +39,6 @@
             background-color: #008CBA;
             color: white;
         }
-    
 </style>
 
 
@@ -51,31 +50,44 @@
 
     </div>
     <p>Currency converter - Base ZAR to other currencies.</p>
+@using (Html.BeginForm("CurrencyConverter", "Home", FormMethod.Post))
+{
 
     <div class="form-group row">
-        
-    </div>
 
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <table>
         <tr>
             <td style="margin-left:initial"><b>Amount</b></td>
+            <td></td>
             <td style="margin-left:initial"><b>From</b></td>
+            <td></td>
             <td style="margin-left:initial"><b>To</b></td>
         </tr>
         <tr>
-            <td><input type="text" placeholder="1.00" style="width:250px; height:30px"  />&nbsp;&nbsp;</td>
-            <td> <input type="text" placeholder="ZAR - South African Rand" style="width:250px; height:30px" readonly />&nbsp;->&nbsp;</td>
-            <td> <select id="currencyDropDownList" name="currencyDropDownList" placeholder="USD" style="width:250px; height:30px" >
-                     <option value="USD">USD</option>
-                     <option value="EUR">EUR</option>
-                     <option value="GBP">GBP</option>
-                     <option value="HKD">HKD</option>
-                     <option value="KES">KES</option>
-                 </select> 
+            <td>
+                @Html.TextBoxFor(m => m.rand, new { placeholder = "1.00", @class = "form-control", style = "color:red" })
+                @Html.ValidationMessageFor(m => m.rand, "", new { @class = "text-danger" })
             </td>
+            <td>&nbsp;&nbsp;</td>
+            <td>@Html.TextBoxFor(m => m.zar, new { placeholder = "ZAR - South African Rand", @class = "form-control", style = "color:gray", @readonly = "readonly" })</td>
+            <td>&nbsp;->&nbsp;</td>
+            <td>@Html.DropDownList("currencyDropDownList", new SelectList(new List<string>(), "value", "name"), new { @id = "currencyDropDownList", @class = "form-control" })</td>
+
         </tr>
+        <tr>
+            <td></td>
+            <td>&nbsp;&nbsp;</td>
+            <td></td>
+            <td>&nbsp;&nbsp;</td>
+           
+
+        </tr>
+
+
     </table>
-     <br />
+    <br />
     <table>
         <tr>
             <td></td>
@@ -84,31 +96,45 @@
         </tr>
         <tr>
             <td style="margin-left: initial; background-color: #008CBA;">
-                   <button type="submit" value="Convert" class="button button2">Convert</button></td>
+                <button type="submit" value="Convert" class="button button2">Convert</button>
+            </td>
             <td></td>
             <td></td>
-            ;
+           
         </tr>
     </table>
     <br />
     <table>
         <tr>
             <td style="margin-left:initial">
-                <label id="zarId"> South African Rand = </label>
+                @Html.LabelFor(m => m.from, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                &nbsp;&nbsp;  South African Rand equal to :
+            <td>
+                <input type="text" class="form-control" value="@ViewBag.Result" />
+
+
+
             </td>
             <td></td>
             <td></td>
-        </tr>   
+        </tr>
         <tr>
-           <td>
-              <label id="OtherCurrencyValue"></label> <label id="currencyId"></label>
-           </td>
+            <td>
+                <label id="OtherCurrencyValue"></label> <label id="currencyId"></label>
+            </td>
         </tr>
     </table>
-       
-        <div>
-            <h6>We use the mid-market rate for our Converter.</h6>
-        </div>
-    
 
+    <div>
+        <h6>We use the mid-market rate for our Converter.</h6>
+    </div>
+
+
+}
 </div>
+
+@section Scripts {
+    <script src="~/js/pooling.js"></script>
+}

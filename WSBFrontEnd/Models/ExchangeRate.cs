@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -49,6 +50,23 @@ namespace WSBFrontEnd.Models
         public string KES { get; set; }
        
     }
+
+    public class Values
+    {
+        //[DataType(DataType.Currency)]
+       // [Display(Name = "Please Enter Rand value")]
+        [Required]
+        public double rand { get; set; }
+        public string zar { get; set; }
+        public double equivelant { get; set; }
+
+
+        public float amount { get; set; }
+        public string from { get; set; }
+        public string to { get; set; }
+
+    }
+
 
 
 

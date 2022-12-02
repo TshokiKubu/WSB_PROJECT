@@ -23,8 +23,7 @@ namespace WSB.Models
     public DateTime Date { get; set; }
 
     [JsonProperty("rates")]
-    public Rate Rates { get; set; }
-   //     public List<(string, float)> Rates { get; set; }
+    public Rate Rates { get; set; }   
 }
 
 public partial class motdObj
@@ -44,13 +43,7 @@ public partial class motdObj
         public string EUR { get; set; }
         public string GBP { get; set; }
         public string HKD { get; set; }
-        public string KES { get; set; }
-
-        //public float valUSD { get; set; }
-        //public float valEUR { get; set; }
-        //public float valGBP { get; set; }
-        //public float valHKD { get; set; }
-        //public float valKES { get; set; }
+        public string KES { get; set; }       
     }
 
 

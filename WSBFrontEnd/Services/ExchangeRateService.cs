@@ -1,25 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using WSB.Models;
+using WSBFrontEnd.Models;
 
-namespace WSB.Repositories
+namespace WSBFrontEnd.Services
 {
-    public class ExchangeRepository : IExchangeRepository
-    {
-        private readonly string _st;
 
-        public ExchangeRepository(string st)
+    public class ExchangeRateService : IExchangeRateService
+    {
+        private readonly HttpClient _httpClient;
+
+        public ExchangeRateService(HttpClient http)
         {
-            _st = st;
+            _httpClient = http;
         }
 
+        
 
-        public ICollection<ExchangeRate> GetExchangeRateCurrency(string currency)
+        public async Task<ExchangeRate> GetExchange()
         {
-            throw new NotImplementedException();
+            ExchangeRate list = new ExchangeRate();
+
+           // _httpClient.BaseAddress = new Uri("");
+
+            var response = await _httpClient.GetAsync("?base=ZAR");
+
+            if (response.IsSuccessStatusCode)
+            {
+                list = await response.Content.ReadAsAsync<ExchangeRate>();
+            }
+            return list;
         }
 
         public float GetCurrencyRateInZarRand(string currency)
@@ -76,9 +88,6 @@ namespace WSB.Repositories
             }
             catch { return 0; }
         }
-
-        
+    
     }
-
 }
-
